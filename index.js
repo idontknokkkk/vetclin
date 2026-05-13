@@ -1,4 +1,4 @@
-const express = require('express'); // ПОМИЛКа
+const express = require('express'); // Пfafafafaf
 const mysql = require('mysql2');
 const app = express();
 app.use(express.json());
