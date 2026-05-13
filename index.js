@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); // ПОМИЛКа
 const mysql = require('mysql2');
 const app = express();
 app.use(express.json());
@@ -15,7 +15,6 @@ db.connect((err) => {
   console.log('Connected to vet_clin database');
 });
 
-// GET - всі тварини
 app.get('/animals', (req, res) => {
   db.query('SELECT * FROM animals', (err, results) => {
     if (err) throw err;
@@ -23,7 +22,6 @@ app.get('/animals', (req, res) => {
   });
 });
 
-// GET - одна тварина
 app.get('/animals/:id', (req, res) => {
   const { id } = req.params;
   db.query('SELECT * FROM animals WHERE animal_id = ?', [id], (err, results) => {
@@ -32,7 +30,6 @@ app.get('/animals/:id', (req, res) => {
   });
 });
 
-// POST - додати тварину
 app.post('/animals', (req, res) => {
   const { name, species, breed, birth_date, owner_id } = req.body;
   db.query(
@@ -45,7 +42,6 @@ app.post('/animals', (req, res) => {
   );
 });
 
-// PUT - оновити тварину
 app.put('/animals/:id', (req, res) => {
   const { name, species, breed, birth_date, owner_id } = req.body;
   const { id } = req.params;
@@ -59,7 +55,6 @@ app.put('/animals/:id', (req, res) => {
   );
 });
 
-// DELETE - видалити тварину
 app.delete('/animals/:id', (req, res) => {
   const { id } = req.params;
   db.query('DELETE FROM animals WHERE animal_id=?', [id], (err) => {
@@ -68,4 +63,4 @@ app.delete('/animals/:id', (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log('Server started on port 3000')); 
+app.listen(3000, () => console.log('Server started on port 3000'));
